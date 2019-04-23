@@ -29,7 +29,7 @@ const shootTimeClass = (shootTime) => {
 
 const domStringBuilder = (locArray) => {
   let domString = '';
-  domString += '<div class="text-center row">';
+  domString += '<div class="text-center row col-12">';
   locArray.forEach((location) => {
     domString += `<div id=${location.id} class="card col-2">`;
     domString += `<div class="card-header ${shootTimeClass(location.shootTime)}">${location.name}</div>`;
