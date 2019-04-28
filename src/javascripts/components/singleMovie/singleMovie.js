@@ -5,7 +5,7 @@ import './singleMovie.scss';
 
 let locations = [];
 let movies = [];
-
+const singleMoviesArrays = locations.concat(movies);
 
 const domBuilder = (array) => {
   let domString = '';
@@ -29,6 +29,7 @@ const test = () => {
     .then((resp) => {
       const locationsResults = resp.data.locations;
       locations = locationsResults;
+      singleMoviesArrays.push(locations);
       domBuilder(locations);
     })
     .catch(err => console.error(err));
@@ -39,14 +40,21 @@ const test2 = () => {
     .then((resp) => {
       const moviesResult = resp.data.movies;
       movies = moviesResult;
+      singleMoviesArrays.push(movies);
       domBuilder2(movies);
     })
     .catch(err => console.error(err));
 };
 
 const singleMovieViewer = () => {
-  let domString = '<div>';
-  domString += '<h2>Single Movie View</h2>';
+  console.error(singleMoviesArrays);
+  let domString = '<h2>Single Movie View</h2>';
+  domString += '<div class="card mb-3">';
+  domString += '<img src="#" class="card-img-top" alt="movie">';
+  domString += '<div class="card-body">';
+  domString += '<h5>Movie Title</h5>';
+  domString += '<p>Lorem ipsum</p>';
+  domString += '</div>';
   domString += '</div>';
   util.printToDom('singleMovie', domString);
 };
