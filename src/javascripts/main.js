@@ -10,6 +10,8 @@ const init = () => {
   movies.initializeMovies();
   locations.initializeLocations();
   singleMovie.test();
+  singleMovie.test2();
+  singleMovie.singleMovieViewer();
 };
 
 init();

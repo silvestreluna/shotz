@@ -1,9 +1,11 @@
 import locationsData from '../../helpers/data/locationsData';
-// import moviesData from '../../helpers/data/moviesData';
+import moviesData from '../../helpers/data/moviesData';
 import util from '../../helpers/util';
 import './singleMovie.scss';
 
 let locations = [];
+let movies = [];
+
 
 const domBuilder = (array) => {
   let domString = '';
@@ -11,6 +13,14 @@ const domBuilder = (array) => {
     domString += `<p>${loc.id}</p>`;
   });
   util.printToDom('test', domString);
+};
+
+const domBuilder2 = (array) => {
+  let domString = '';
+  array.forEach((movie) => {
+    domString += `<p>${movie.id}</p>`;
+  });
+  util.printToDom('test2', domString);
 };
 
 
@@ -24,5 +34,21 @@ const test = () => {
     .catch(err => console.error(err));
 };
 
+const test2 = () => {
+  moviesData.getMoviesData()
+    .then((resp) => {
+      const moviesResult = resp.data.movies;
+      movies = moviesResult;
+      domBuilder2(movies);
+    })
+    .catch(err => console.error(err));
+};
 
-export default { test };
+const singleMovieViewer = () => {
+  let domString = '<div>';
+  domString += '<h2>Single Movie View</h2>';
+  domString += '</div>';
+  util.printToDom('singleMovie', domString);
+};
+
+export default { test, test2, singleMovieViewer };
