@@ -9,9 +9,8 @@ import '../styles/main.scss';
 const init = () => {
   movies.initializeMovies();
   locations.initializeLocations();
-  singleMovie.test();
-  singleMovie.test2();
   singleMovie.singleMovieViewer();
+  singleMovie.test3();
 };
 
 init();
