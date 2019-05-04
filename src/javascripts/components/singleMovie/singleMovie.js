@@ -5,21 +5,10 @@ import './singleMovie.scss';
 
 let locations = [];
 let movies = [];
-console.error(locations);
-const test3 = (event) => {
-  const divId = event.currentTarget.id;
-  const total = divId;
-  console.error(total);
-};
 
-const backToHomePage = () => {
-  const test1 = 'hello';
-  const total = test1;
-  console.error(total);
-};
+console.error(locations);
 
 const singleMovieViewer = (locArray) => {
-  // document.querySelector('app').innerHTML = '';
   let domString = '<h2>Single Movie View</h2>';
   locArray.forEach((movie) => {
     domString += '<div class="card mb-3">';
@@ -33,7 +22,6 @@ const singleMovieViewer = (locArray) => {
     domString += '</div>';
   });
   util.printToDom('singleMovie', domString);
-  document.getElementById('goBack').addEventListener('click', backToHomePage);
 };
 
 
@@ -62,13 +50,24 @@ const singlePageEvent = (e) => {
   }
 };
 
+const printSomething = (event) => {
+  console.error('It worked');
+  const currentId = event.target.id;
+  console.error(currentId);
+};
+
+const addEventsToMovies = () => {
+  const getIdCard = document.getElementById('movies');
+  getIdCard.addEventListener('click', printSomething);
+};
+
 
 const test2 = () => {
   moviesData.getMoviesData()
     .then((resp) => {
       const moviesResult = resp.data.movies;
       movies = moviesResult;
-      singleMovieViewer();
+      // singleMovieViewer();
     })
     .catch(err => console.error(err));
 };
@@ -79,10 +78,10 @@ const test = () => {
     .then((resp) => {
       const locationsResults = resp.data.locations;
       locations = locationsResults;
-      singleMovieViewer();
+      // singleMovieViewer();
     })
     .catch(err => console.error(err));
 };
 test();
 
-export default { test3, singlePageEvent };
+export default { singlePageEvent, addEventsToMovies };

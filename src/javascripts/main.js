@@ -7,10 +7,9 @@ import '../styles/main.scss';
 
 
 const init = () => {
+  singleMovie.addEventsToMovies();
   movies.initializeMovies();
   locations.initializeLocations();
-  singleMovie.singleMovieViewer();
-  singleMovie.test3();
 };
 
 init();
