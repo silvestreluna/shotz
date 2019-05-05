@@ -6,7 +6,7 @@ import './movies.scss';
 let movies = [];
 const domStringBuilder = () => {
   let domString = '';
-  domString += '<div class=" text-center row">';
+  domString += '<div class="text-center row">';
   movies.forEach((movie) => {
     domString += `<div id=${movie.id} class="movie-card card col-4">`;
     domString += `<h3>${movie.name}</h3>`;
@@ -29,5 +29,6 @@ const initializeMovies = () => {
     })
     .catch(err => console.error(err));
 };
+
 
 export default { initializeMovies };

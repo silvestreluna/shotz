@@ -51,9 +51,8 @@ const singlePageEvent = (e) => {
 };
 
 const printSomething = (event) => {
-  console.error('It worked');
-  const currentId = event.target.id;
-  console.error(currentId);
+  const test1 = event.target.parentElement.id;
+  console.error(test1);
 };
 
 const addEventsToMovies = () => {
