@@ -1,12 +1,24 @@
-import locationsData from '../../helpers/data/locationsData';
+// import locationsData from '../../helpers/data/locationsData';
 import moviesData from '../../helpers/data/moviesData';
+// import allMovies from '../movies/movies';
+// import allLocations from '../locations/locations';
 import util from '../../helpers/util';
 import './singleMovie.scss';
 
-let locations = [];
+// let locations = [];
 let movies = [];
 
-console.error(locations);
+// console.error(locations);
+
+const displayAllMovies = () => {
+  document.getElementById('movies').classList = '';
+  document.getElementById('locations').classList = '';
+  document.getElementById('locations').classList.add = 'd-flex';
+  document.getElementById('filters').classList = '';
+  document.getElementById('clearItem').classList = '';
+  document.getElementById('clearItem2').classList = '';
+  document.getElementById('singleMovie').innerHTML = '';
+};
 
 const singleMovieViewer = (locArray) => {
   let domString = '<h2>Single Movie View</h2>';
@@ -21,18 +33,25 @@ const singleMovieViewer = (locArray) => {
     domString += '</div>';
     domString += '</div>';
   });
+  document.getElementById('movies').classList = 'd-none';
+  document.getElementById('locations').classList = 'd-none';
+  document.getElementById('locations').classList.remove = 'd-flex';
+  document.getElementById('filters').classList = 'd-none';
+  document.getElementById('clearItem').classList = 'd-none';
+  document.getElementById('clearItem2').classList = 'd-none';
   util.printToDom('singleMovie', domString);
+  document.getElementById('goBack').addEventListener('click', displayAllMovies);
 };
 
 
-const singlePageEvent = (e) => {
-  const buttonId = e.currentTarget.id;
-  console.error(buttonId);
+const singlePageEvent = (event) => {
+  const movieClicked = event.target.parentElement.id;
   const movie1 = movies.filter(x => x.id === 'movie1');
   const movie2 = movies.filter(x => x.id === 'movie2');
   const movie3 = movies.filter(x => x.id === 'movie3');
   const movie4 = movies.filter(x => x.id === 'movie4');
-  switch (buttonId) {
+
+  switch (movieClicked) {
     case 'movie1':
       singleMovieViewer(movie1);
       break;
@@ -46,18 +65,13 @@ const singlePageEvent = (e) => {
       singleMovieViewer(movie4);
       break;
     default:
-      util.printToDom('test', '<h1>ERROR</h1>');
   }
 };
 
-const printSomething = (event) => {
-  const test1 = event.target.parentElement.id;
-  console.error(test1);
-};
 
 const addEventsToMovies = () => {
-  const getIdCard = document.getElementById('movies');
-  getIdCard.addEventListener('click', printSomething);
+  const getIdCard = document.getElementById('app');
+  getIdCard.addEventListener('click', singlePageEvent);
 };
 
 
@@ -72,15 +86,15 @@ const test2 = () => {
 };
 test2();
 
-const test = () => {
-  locationsData.getLocationsData()
-    .then((resp) => {
-      const locationsResults = resp.data.locations;
-      locations = locationsResults;
-      // singleMovieViewer();
-    })
-    .catch(err => console.error(err));
-};
-test();
+// const test = () => {
+//   locationsData.getLocationsData()
+//     .then((resp) => {
+//       const locationsResults = resp.data.locations;
+//       locations = locationsResults;
+//       // singleMovieViewer();
+//     })
+//     .catch(err => console.error(err));
+// };
+// test();
 
 export default { singlePageEvent, addEventsToMovies };
