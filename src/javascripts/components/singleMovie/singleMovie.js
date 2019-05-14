@@ -1,14 +1,10 @@
-// import locationsData from '../../helpers/data/locationsData';
+import locationsData from '../../helpers/data/locationsData';
 import moviesData from '../../helpers/data/moviesData';
-// import allMovies from '../movies/movies';
-// import allLocations from '../locations/locations';
 import util from '../../helpers/util';
 import './singleMovie.scss';
 
-// let locations = [];
+let locations = [];
 let movies = [];
-
-// console.error(locations);
 
 const displayAllMovies = () => {
   document.getElementById('movies').classList = '';
@@ -20,9 +16,34 @@ const displayAllMovies = () => {
   document.getElementById('singleMovie').innerHTML = '';
 };
 
+const shootTimeClass = (shootTime) => {
+  let selectedClass = '';
+  switch (shootTime) {
+    case 'Morning':
+      selectedClass = 'bg-secondary';
+      break;
+    case 'Afternoon':
+      selectedClass = 'bg-success';
+      break;
+    case 'Evening':
+      selectedClass = 'bg-info';
+      break;
+    case 'After Dark':
+      selectedClass = 'bg-danger';
+      break;
+    default:
+      selectedClass = '';
+  }
+  return selectedClass;
+};
+
 const singleMovieViewer = (locArray) => {
   let domString = '<h2>Single Movie View</h2>';
+  let domLocations = [];
   locArray.forEach((movie) => {
+    const locationsId = movie.locations;
+    const tempArray = locations.filter(item => locationsId.includes(item.id));
+    domLocations = tempArray;
     domString += '<div class="card mb-3">';
     domString += '<div class="card-body">';
     domString += `<h3>${movie.name}</h3>`;
@@ -32,7 +53,17 @@ const singleMovieViewer = (locArray) => {
     domString += '<button id="goBack" class="btn btn-primary">Go Back</button>';
     domString += '</div>';
     domString += '</div>';
+    domString += '<div class="text-center row col-12">';
+    domLocations.forEach((location) => {
+      domString += `<div id=${location.id} class="card col-2">`;
+      domString += `<div class="card-header ${shootTimeClass(location.shootTime)}">${location.name}</div>`;
+      domString += `<img class="card-img-top " src=${location.imageUrl} alt="location" />`;
+      domString += `<p>${location.address}</p>`;
+      domString += '</div>';
+    });
+    domString += '</div>';
   });
+
   document.getElementById('movies').classList = 'd-none';
   document.getElementById('locations').classList = 'd-none';
   document.getElementById('locations').classList.remove = 'd-flex';
@@ -80,21 +111,19 @@ const test2 = () => {
     .then((resp) => {
       const moviesResult = resp.data.movies;
       movies = moviesResult;
-      // singleMovieViewer();
     })
     .catch(err => console.error(err));
 };
 test2();
 
-// const test = () => {
-//   locationsData.getLocationsData()
-//     .then((resp) => {
-//       const locationsResults = resp.data.locations;
-//       locations = locationsResults;
-//       // singleMovieViewer();
-//     })
-//     .catch(err => console.error(err));
-// };
-// test();
+const test = () => {
+  locationsData.getLocationsData()
+    .then((resp) => {
+      const locationsResults = resp.data.locations;
+      locations = locationsResults;
+    })
+    .catch(err => console.error(err));
+};
+test();
 
 export default { singlePageEvent, addEventsToMovies };
