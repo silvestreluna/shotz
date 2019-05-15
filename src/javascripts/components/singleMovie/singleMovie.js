@@ -75,10 +75,8 @@ const singleMovieViewer = (locArray) => {
 };
 
 
-const singlePageEvent = (event) => {
-  const movieClicked = event.target.parentElement.id;
-  const test1 = event.target.parentElement;
-  console.error(test1);
+const singlePageEvent = (e) => {
+  const movieClicked = e.target.closest('.card').id;
   const movie1 = movies.filter(x => x.id === 'movie1');
   const movie2 = movies.filter(x => x.id === 'movie2');
   const movie3 = movies.filter(x => x.id === 'movie3');
@@ -103,7 +101,7 @@ const singlePageEvent = (event) => {
 
 
 const addEventsToMovies = () => {
-  const getIdCard = document.getElementById('app');
+  const getIdCard = document.getElementById('movies');
   getIdCard.addEventListener('click', singlePageEvent);
 };
 
