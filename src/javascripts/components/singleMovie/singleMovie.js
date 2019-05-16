@@ -106,7 +106,7 @@ const addEventsToMovies = () => {
 };
 
 
-const test2 = () => {
+const initMoviesData = () => {
   moviesData.getMoviesData()
     .then((resp) => {
       const moviesResult = resp.data.movies;
@@ -114,9 +114,9 @@ const test2 = () => {
     })
     .catch(err => console.error(err));
 };
-test2();
 
-const test = () => {
+
+const initLocData = () => {
   locationsData.getLocationsData()
     .then((resp) => {
       const locationsResults = resp.data.locations;
@@ -124,6 +124,10 @@ const test = () => {
     })
     .catch(err => console.error(err));
 };
-test();
 
-export default { singlePageEvent, addEventsToMovies };
+export default {
+  singlePageEvent,
+  addEventsToMovies,
+  initLocData,
+  initMoviesData,
+};

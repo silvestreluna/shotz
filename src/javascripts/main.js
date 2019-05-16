@@ -7,6 +7,8 @@ import '../styles/main.scss';
 
 
 const init = () => {
+  singleMovie.initLocData();
+  singleMovie.initMoviesData();
   singleMovie.addEventsToMovies();
   movies.initializeMovies();
   locations.initializeLocations();
