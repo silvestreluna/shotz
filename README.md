@@ -4,7 +4,7 @@
 A website to keep track of movies and their shooting locations. 
 
 ## Screenshots
-
+![] ()
 ## Installation Instructions
 * Clone this repo
 * At the root of the project run `npm install`
